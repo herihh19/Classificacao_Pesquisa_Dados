@@ -1,0 +1,14 @@
+//ATIVIDADE INSERÇÃO CLASSIFICAÇÃO E PESQUISA DE DADOS
+
+
+//em python:
+def inserção_sort(dados):
+    para j em intervalo(1, len(dados)):
+        para i no intervalo(j, 0, -1):
+            se dados[i] < dados[i - 1]:
+                dados[i], dados[i - 1] = dados[i - 1], dados[i]
+            outro:
+                quebrar
+dados = [100,1,5,60]
+inserção_sort(dados)
+print("Lista ordenada:", dados)
