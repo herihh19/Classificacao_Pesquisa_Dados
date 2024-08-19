@@ -2,13 +2,21 @@
 
 
 //em python:
-def inserção_sort(dados):
-    para j em intervalo(1, len(dados)):
-        para i no intervalo(j, 0, -1):
-            se dados[i] < dados[i - 1]:
-                dados[i], dados[i - 1] = dados[i - 1], dados[i]
-            outro:
-                quebrar
-dados = [100,1,5,60]
-inserção_sort(dados)
-print("Lista ordenada:", dados)
+def insertion_sort(data):
+    for j in range(1, len(data)):
+        for i in range(j, 0, -1):
+            if data[i] < data[i - 1]:
+                data[i], data[i - 1] = data[i - 1], data[i]
+            else:
+                break
+def teste():
+    testes = {
+        "ordenados": [1, 2, 3, 4, 5],
+        "invertidos": [5, 4, 3, 2, 1],
+        "duplicados": [2, 3, 1, 4, 2, 1, 5],
+        "sem repetição": [3, 1, 4, 2, 5]
+    }
+    for name, data in testes.items():
+        insertion_sort(data)
+        print(f"{name}: {data}")
+teste()
