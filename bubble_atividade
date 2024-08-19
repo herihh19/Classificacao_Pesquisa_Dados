@@ -1,1 +1,24 @@
 
+def bolha(lista):
+    for j in range(len(lista)):
+        for i in range(j+1, len(lista)):
+            if lista[i]<lista[j]:
+                aux = lista[j]
+                lista[j] = lista[i]
+                lista[i] = aux
+                print(lista)
+                
+    return lista
+def teste():
+    testes = {
+        "ordenados": [1, 2, 3, 4, 5],
+        "invertidos": [5, 4, 3, 2, 1],
+        "duplicados": [2, 3, 1, 4, 2, 1, 5],
+        "sem repetição": [3, 1, 4, 2, 5]
+    }
+    for name, lista in testes.items():
+        lista_copia = lista.copy()  
+        bolha(lista_copia)
+        print(f"{name}: {lista_copia}")
+
+teste()
