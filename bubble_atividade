@@ -6,7 +6,7 @@ def bolha(lista):
                 aux = lista[j]
                 lista[j] = lista[i]
                 lista[i] = aux
-                print(lista)
+ 
                 
     return lista
 def teste():
