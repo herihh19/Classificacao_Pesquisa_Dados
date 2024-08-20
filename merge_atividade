@@ -36,6 +36,5 @@ ini = 0
 meio = 3
 fim = 7
 
-print("Antes do merge:", v)
-merge(v, ini, meio, fim)
-print("Depois do merge:", v)
+
+print("Merge", v)
