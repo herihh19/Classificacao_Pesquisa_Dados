@@ -7,7 +7,6 @@ def selectsort(data):
             if data[j] < menor:
                 menor = data[j]
                 menor_id = j
-        # Troca os elementos
         troca = data[i]
         data[i] = data[menor_id]
         data[menor_id] = troca
