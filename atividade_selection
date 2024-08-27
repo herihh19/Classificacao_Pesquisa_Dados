@@ -1,0 +1,26 @@
+def selectsort(data):
+    n = len(data)
+    for i in range(n - 1):
+        menor = data[i]
+        menor_id = i
+        for j in range(i + 1, n):
+            if data[j] < menor:
+                menor = data[j]
+                menor_id = j
+        # Troca os elementos
+        troca = data[i]
+        data[i] = data[menor_id]
+        data[menor_id] = troca
+
+def teste():
+    testes = {
+        "ordenados": [1, 2, 3, 4, 5],
+        "invertidos": [5, 4, 3, 2, 1],
+        "duplicados": [2, 3, 1, 4, 2, 1, 5],
+        "sem repetição": [3, 1, 4, 2, 5]
+    }
+    for name, data in testes.items():
+        selectsort(data)
+        print(f"{name}: {data}")
+
+teste()
