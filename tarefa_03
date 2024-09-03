@@ -87,6 +87,152 @@ b. Lista ordenada de maneira inversa
 c. Lista com dados repetidos
 d. Lista com dados aleatórios
 
+import time
+import random
+
+def inserction(lista):
+    for i in range(1, len(lista)):
+        chave = lista[i]
+        j = i - 1
+        while j >= 0 and lista[j] > chave:
+            lista[j + 1] = lista[j]
+            j -= 1
+        lista[j + 1] = chave
+
+def selection(lista):
+    for i in range(len(lista)):
+        indice_minimo = i
+        for j in range(i + 1, len(lista)):
+            if lista[j] < lista[indice_minimo]:
+                indice_minimo = j
+        lista[i], lista[indice_minimo] = lista[indice_minimo], lista[i]
+
+def bubble(lista):
+    n = len(lista)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if lista[j] > lista[j+1]:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+
+def merge(lista):
+    n = len(lista)
+    tamanho = 1
+    while tamanho < n:
+        for i in range(0, n, 2 * tamanho):
+            meio = min(i + tamanho, n)
+            fim = min(i + 2 * tamanho, n)
+            mesclar(lista, i, meio, fim)
+        tamanho *= 2
+
+def mesclar(lista, inicio, meio, fim):
+    esquerda = lista[inicio:meio]
+    direita = lista[meio:fim]
+    i = j = 0
+    k = inicio
+    while i < len(esquerda) and j < len(direita):
+        if esquerda[i] <= direita[j]:
+            lista[k] = esquerda[i]
+            i += 1
+        else:
+            lista[k] = direita[j]
+            j += 1
+        k += 1
+    while i < len(esquerda):
+        lista[k] = esquerda[i]
+        i += 1
+        k += 1
+    while j < len(direita):
+        lista[k] = direita[j]
+        j += 1
+        k += 1
+
+def quick(lista):
+    def particionar(inicio, fim):
+        pivo = lista[fim]
+        i = inicio - 1
+        for j in range(inicio, fim):
+            if lista[j] <= pivo:
+                i += 1
+                lista[i], lista[j] = lista[j], lista[i]
+        lista[i + 1], lista[fim] = lista[fim], lista[i + 1]
+        return i + 1
+
+    def quicksort_iterativo(inicio, fim):
+        stack = [(inicio, fim)]
+        while stack:
+            inicio, fim = stack.pop()
+            if inicio < fim:
+                pivo = particionar(inicio, fim)
+                if pivo - 1 > inicio:
+                    stack.append((inicio, pivo - 1))
+                if pivo + 1 < fim:
+                    stack.append((pivo + 1, fim))
+
+    quicksort_iterativo(0, len(lista) - 1)
+
+def shell(lista):
+    n = len(lista)
+    gap = n // 2
+    while gap > 0:
+        for i in range(gap, n):
+            temp = lista[i]
+            j = i
+            while j >= gap and lista[j - gap] > temp:
+                lista[j] = lista[j - gap]
+                j -= gap
+            lista[j] = temp
+        gap //= 2
+
+
+def gerar_lista_ordenada(tamanho):
+    return list(range(tamanho))
+
+def gerar_lista_reversa(tamanho):
+    return list(range(tamanho, 0, -1))
+
+def gerar_lista_repetidos(tamanho):
+    return [random.choice(range(tamanho // 10)) for _ in range(tamanho)]
+
+def gerar_lista_aleatoria(tamanho):
+    return [random.randint(0, tamanho) for _ in range(tamanho)]
+
+
+def medir_tempo(funcao_ordenacao, lista):
+    inicio = time.time()
+    funcao_ordenacao(lista)
+    fim = time.time()
+    return fim - inicio
+
+
+def executar_testes(tamanhos):
+    for tamanho in tamanhos:
+        print(f"Tamanho: {tamanho}")
+        
+        listas = {
+            "ordenada": gerar_lista_ordenada(tamanho),
+            "reversa": gerar_lista_reversa(tamanho),
+            "repetidos": gerar_lista_repetidos(tamanho),
+            "aleatoria": gerar_lista_aleatoria(tamanho),
+        }
+        
+        for tipo, lista in listas.items():
+            print(f"\nTipo de lista: {tipo}")
+            for nome, funcao in {
+                "Ordenação por Inserction": inserction,
+                "Ordenação por Selection": selection,
+                "Ordenação por Bubble": bubble,
+                "Ordenação por Merge": merge,
+                "Ordenação Quick": quick,
+                "Ordenação Shell": shell,
+            }.items():
+                lista_copia = lista.copy()  # Faz uma cópia da lista para cada função de ordenação
+                tempo = medir_tempo(funcao, lista_copia)
+                print(f"{nome}: {tempo:.6f} segundos")
+
+if __name__ == "__main__":
+    tamanhos = [100, 500, 1000]  # Exemplo de tamanhos para testes
+    executar_testes(tamanhos)
+
 
 3. Pesquisar e implementar o algoritmo Heapsort
 
@@ -111,7 +257,6 @@ implementação é simples e requer uma quantidade de código pequena.
 
 a)(X) Verdadeira 
 b)( ) Falsa
-
 
 5. (   ) No Quicksort, a pior escolha para pivô é:*
 a) (   ) O extremo de uma lista já ordenada
