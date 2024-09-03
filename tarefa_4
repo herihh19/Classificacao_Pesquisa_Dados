@@ -1,1 +1,68 @@
+- Implementar o algoritmo HeapSort (Com heap maximo)
 
+def max_heap(V, i, last_position):
+    esquerda = 2 * i + 1
+    direita = 2 * i + 2
+    tamanho = i
+
+    if esquerda <= last_position and V[esquerda] > V[tamanho]:
+        tamanho = esquerda
+
+    if direita <= last_position and V[direita] > V[tamanho]:
+        tamanho = direita
+
+    if tamanho != i:
+        V[i], V[tamanho] = V[tamanho], V[i]
+        max_heap(V, tamanho, last_position)
+heap = [4, 10, 3, 5, 1]
+max_heap(heap, 0, len(heap) - 1)
+print(heap)
+
+
+- Implementar o algoritmo HeapSort (Com heap mínimo)
+
+def min_heap(V, i, last_position):
+    esquerda = 2 * i + 1
+    direita = 2 * i + 2
+    tamanho = i
+
+    if esquerda <= last_position and V[esquerda] < V[tamanho]:
+        tamanho = esquerda
+
+    if direita <= last_position and V[direita] < V[tamanho]:
+        tamanho = direita
+
+    if tamanho != i:
+        V[i], V[tamanho] = V[tamanho], V[i]
+        min_heap(V, tamanho, last_position)
+
+def build_min_heap(V):
+    last_position = len(V) - 1
+    for i in range((len(V) // 2) - 1, -1, -1):
+        min_heap(V, i, last_position)
+heap = [1, 5, 3, 2, 8]
+build_min_heap(heap)
+print(heap)
+
+
+- Implementar o algoritmo CountingtSort
+
+def counting(array):
+    if len(array) == 0:
+        return array
+    
+    max_val = max(array)
+    count = [0] * (max_val + 1)
+    
+    for num in array:
+        count[num] += 1
+    
+    sorted_array = []
+    for num, freq in enumerate(count):
+        sorted_array.extend([num] * freq)
+    
+    return sorted_array
+
+array = [4, 2, 2, 8, 3, 3, 1]
+sorted_array = counting_sort(array)
+print("Lista ordenada:", sorted_array)
