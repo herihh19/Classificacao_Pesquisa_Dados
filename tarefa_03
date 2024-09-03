@@ -19,21 +19,20 @@ implementação é simples e requer uma quantidade de código pequena.
 (b) Falsa
 
 
-5.() No Quicksort, a pior escolha para pivô é:*
-a)() O extremo de uma lista já ordenada
-b)() O elemento inicial da lista não ordenada
-c)( X ) O menor elemento da lista não ordenada
-d)() O elemento que esteja no "meio" da lista já ordenada
+5. (   ) No Quicksort, a pior escolha para pivô é:*
+a) (   ) O extremo de uma lista já ordenada
+b) (   ) O elemento inicial da lista não ordenada
+c) ( X ) O menor elemento da lista não ordenada
+d) (   ) O elemento que esteja no "meio" da lista já ordenada
 
 Justifique sua resposta: Pois quando o pivô é o menor do conjunto não existe
 divisão dos dados.
 
 6. O algoritmo Insertion Sort possui comportamento melhor do que o método da bolha(Bubblesort). Esta afirmação é:
 a)( X ) Verdadeira
-b)() Falsa
+b)(   )Falsa
 
 Justifique sua resposta: o Insertion Sort não é necessário que sempre haja comparações até o fim.
-
 
 
 7. O pivô recomendado para método quicksort é:
@@ -43,15 +42,18 @@ B)() O último elemento
 C)(X) O elemento central
 D)() Qualquer elemento
 
-
+1,3,7,19,9,
 8. Suponha que você tenha a seguinte lista para realizar ordenação: [19, 1, 9, 7, 3, 10, 13,15, 8, 12]. 
-Qual opção representa a lista parcialmente ordenada após três passoscompletos de bubblesort?
-a)[1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
+Qual opção representa a lista parcialmente ordenada após três passos completos de bubblesort?
 
-b) ()  [1, 3, 7, 9, 10, 8, 12, 13, 15, 19]
-c) ()  [1, 7, 3, 9, 10, 13, 8, 12, 15, 19]
-d) ()  [1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
-e) ()  [1, 3, 7, 9, 8, 10, 12, 13, 15, 19]
+a) (   )  [1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
+b) (   )  [1, 3, 7, 9, 10, 8, 12, 13, 15, 19]
+c) (   )  [1, 7, 3, 9, 10, 13, 8, 12, 15, 19]
+d) (   )  [1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
+e) ( X )  [1, 3, 7, 9, 8, 10, 12, 13, 15, 19]
 Nenhuma das alternativas
-Justifique sua resposta:
+Justifique sua resposta: Pois no método bubblesort ele "flutua" na lista buscando a ordenação dos números, então como começa com o n° 19 ele vai ir passando pela lista 
+e trocando com os todos os n° menores que ele até o final da lista, esse seria o primeiro passo, depois novamente no início da lista irá pegar o n° maior que estiver
+antes de um n° menor e irá fazer as trocas necessárias até o fim, depois ele fará novamente a revisão trocando os números que ainda não estão ordenados, finalizando assim 
+3 passos completos. 
 
