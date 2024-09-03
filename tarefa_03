@@ -15,42 +15,43 @@ d. Lista com dados aleatórios
 4. O shellsort é uma ótima opção para arquivos de tamanho moderado e sua
 implementação é simples e requer uma quantidade de código pequena.
 
-(a) Verdadeira
+(X) Verdadeira 
 (b) Falsa
 
 
-5. No Quicksort, a pior escolha para pivô é:*
-a) O extremo de uma lista já ordenada
-b) O elemento inicial da lista não ordenada
-c)O menor elemento da lista não ordenada
-d) O elemento que esteja no "meio" da lista já ordenada
-Justifique sua resposta:
+5.() No Quicksort, a pior escolha para pivô é:*
+a)() O extremo de uma lista já ordenada
+b)() O elemento inicial da lista não ordenada
+c)( X ) O menor elemento da lista não ordenada
+d)() O elemento que esteja no "meio" da lista já ordenada
+
+Justifique sua resposta: Pois quando o pivô é o menor do conjunto não existe
+divisão dos dados.
 
 6. O algoritmo Insertion Sort possui comportamento melhor do que o método da bolha(Bubblesort). Esta afirmação é:
-(a) Verdadeira
-(b) Falsa
+a)( X ) Verdadeira
+b)() Falsa
 
-
-Justifique sua resposta:
+Justifique sua resposta: o Insertion Sort não é necessário que sempre haja comparações até o fim.
 
 
 
 7. O pivô recomendado para método quicksort é:
 
-A) O primeiro elemento
-B) O último elemento
-C)O elemento central
-D) Qualquer elemento
+A)() O primeiro elemento
+B)() O último elemento
+C)(X) O elemento central
+D)() Qualquer elemento
 
 
 8. Suponha que você tenha a seguinte lista para realizar ordenação: [19, 1, 9, 7, 3, 10, 13,15, 8, 12]. 
 Qual opção representa a lista parcialmente ordenada após três passoscompletos de bubblesort?
 a)[1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
 
-b)[1, 3, 7, 9, 10, 8, 12, 13, 15, 19]
-c)[1, 7, 3, 9, 10, 13, 8, 12, 15, 19]
-d)[1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
-e) [1, 3, 7, 9, 8, 10, 12, 13, 15, 19]
+b) ()  [1, 3, 7, 9, 10, 8, 12, 13, 15, 19]
+c) ()  [1, 7, 3, 9, 10, 13, 8, 12, 15, 19]
+d) ()  [1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
+e) ()  [1, 3, 7, 9, 8, 10, 12, 13, 15, 19]
 Nenhuma das alternativas
 Justifique sua resposta:
 
