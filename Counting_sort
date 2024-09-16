@@ -1,1 +1,20 @@
 
+def counting(array):
+    if len(array) == 0:
+        return array
+    
+    max_val = max(array)
+    count = [0] * (max_val + 1)
+    
+    for num in array:
+        count[num] += 1
+    
+    sorted_array = []
+    for num, freq in enumerate(count):
+        sorted_array.extend([num] * freq)
+    
+    return sorted_array
+
+array = [4, 2, 2, 8, 3, 3, 1]
+sorted_array = counting_sort(array)
+print("Lista ordenada:", sorted_array)
