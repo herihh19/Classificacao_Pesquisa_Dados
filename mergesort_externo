@@ -1,1 +1,52 @@
+import os
+import heapq
+
+def dividir_em_blocos(arquivo_entrada, tamanho_bloco, diretorio_blocos):
+    blocos = []
+    with open(arquivo_entrada, 'r') as entrada:
+        while True:
+            linhas = entrada.readlines(tamanho_bloco)
+            if not linhas:
+                break
+            inhas.sort()
+            nome_bloco = os.path.join(diretorio_blocos, f'bloco_{len(blocos)}.txt')
+            with open(nome_bloco, 'w') as bloco:
+                bloco.writelines(linhas)
+            blocos.append(nome_bloco)
+    
+    return blocos
+def intercalar_blocos(blocos, arquivo_saida):
+    min_heap = []
+    arquivos_blocos = []
+    for bloco in blocos:
+        arquivo = open(bloco, 'r')
+        arquivos_blocos.append(arquivo)
+        linha = arquivo.readline()
+        if linha:
+            heapq.heappush(min_heap, (linha, arquivo))
+    
+    with open(arquivo_saida, 'w') as saida:
+        while min_heap:
+            # Retira o menor elemento do heap
+            menor_linha, arquivo = heapq.heappop(min_heap)
+            saida.write(menor_linha)
+            
+            # Adiciona a próxima linha do mesmo bloco ao heap
+            proxima_linha = arquivo.readline()
+            if proxima_linha:
+                heapq.heappush(min_heap, (proxima_linha, arquivo))
+    
+  
+    for arquivo in arquivos_blocos:
+        arquivo.close()
+
+
+def merge_sort_externo(arquivo_entrada, arquivo_saida, tamanho_bloco, diretorio_blocos):
+    
+    os.makedirs(diretorio_blocos, exist_ok=True)
+    blocos = dividir_em_blocos(arquivo_entrada, tamanho_bloco, diretorio_blocos)
+    intercalar_blocos(blocos, arquivo_saida)
+    
+    for bloco in blocos:
+        os.remove(bloco)
 
