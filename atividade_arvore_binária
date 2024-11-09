@@ -1,1 +1,15 @@
+#1.Crie um TAD (Tipo Abstrato de Dados) de ABB, com no mínimo, funções para:
+# -criação;
+# -inserção;
+# -impressão (percurso em pré-ordem, pós-ordem, ordem simétrica);
+# -deleção;
+# -busca;
 
+
+
+
+
+# 2.Pesquisar sobre outros tipos de árvore:
+# -Red–black tree (Árvore rubro-negra)
+# -B tree, B+ tree
+# -Descrever o que é? Para que serve?  Como funciona cada uma das árvores?
