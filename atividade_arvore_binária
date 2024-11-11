@@ -1,15 +1,140 @@
-#1.Crie um TAD (Tipo Abstrato de Dados) de ABB, com no mínimo, funções para:
-# -criação;
-# -inserção;
-# -impressão (percurso em pré-ordem, pós-ordem, ordem simétrica);
-# -deleção;
-# -busca;
+1.Crie um TAD (Tipo Abstrato de Dados) de ABB, com no mínimo, funções para:
+-criação;
+-inserção;
+-impressão (percurso em pré-ordem, pós-ordem, ordem simétrica);
+-deleção;
+-busca;
+
+class Node:
+    def __init__(self, valor):
+        self.valor = valor
+        self.esquerda = None
+        self.direita = None
+
+
+class ABB:
+    def __init__(self):
+        self.raiz = None
+
+    def inserir(self, valor):
+        self.raiz = self._inserir_rec(self.raiz, valor)
+
+    def _inserir_rec(self, nodo, valor):
+        if not nodo:
+            return Node(valor)
+        if valor < nodo.valor:
+            nodo.esquerda = self._inserir_rec(nodo.esquerda, valor)
+        elif valor > nodo.valor:
+            nodo.direita = self._inserir_rec(nodo.direita, valor)
+        return nodo
+
+    def buscar(self, valor):
+        return self._buscar_rec(self.raiz, valor)
+
+    def _buscar_rec(self, nodo, valor):
+        if not nodo or nodo.valor == valor:
+            return nodo
+        return self._buscar_rec(nodo.esquerda if valor < nodo.valor else nodo.direita, valor)
+
+    def pre_ordem(self):
+        self._pre_ordem_rec(self.raiz)
+        print()
+
+    def _pre_ordem_rec(self, nodo):
+        if nodo:
+            print(nodo.valor, end=" ")
+            self._pre_ordem_rec(nodo.esquerda)
+            self._pre_ordem_rec(nodo.direita)
+
+    def pos_ordem(self):
+        self._pos_ordem_rec(self.raiz)
+        print()
+
+    def _pos_ordem_rec(self, nodo):
+        if nodo:
+            self._pos_ordem_rec(nodo.esquerda)
+            self._pos_ordem_rec(nodo.direita)
+            print(nodo.valor, end=" ")
+
+    def ordem_simetrica(self):
+        self._ordem_simetrica_rec(self.raiz)
+        print()
+
+    def _ordem_simetrica_rec(self, nodo):
+        if nodo:
+            self._ordem_simetrica_rec(nodo.esquerda)
+            print(nodo.valor, end=" ")
+            self._ordem_simetrica_rec(nodo.direita)
+
+    def deletar(self, valor):
+        self.raiz = self._deletar_rec(self.raiz, valor)
+
+    def _deletar_rec(self, nodo, valor):
+        if not nodo:
+            return nodo
+        if valor < nodo.valor:
+            nodo.esquerda = self._deletar_rec(nodo.esquerda, valor)
+        elif valor > nodo.valor:
+            nodo.direita = self._deletar_rec(nodo.direita, valor)
+        else:
+            if not nodo.esquerda:
+                return nodo.direita
+            if not nodo.direita:
+                return nodo.esquerda
+            menor_valor = self._min_valor(nodo.direita)
+            nodo.valor = menor_valor
+            nodo.direita = self._deletar_rec(nodo.direita, menor_valor)
+        return nodo
+
+    def _min_valor(self, nodo):
+        while nodo.esquerda:
+            nodo = nodo.esquerda
+        return nodo.valor
+
+
+abb = ABB()
+for v in [50, 30, 70, 20, 40, 60, 80]:
+    abb.inserir(v)
+
+print("Pré-ordem:")
+abb.pre_ordem()
+print("Pós-ordem:")
+abb.pos_ordem()
+print("Ordem simétrica:")
+abb.ordem_simetrica()
+
+print("\nBuscando valor 40:", "Encontrado" if abb.buscar(40) else "Não encontrado")
+
+abb.deletar(70)
+print("Ordem simétrica após deletar 70:")
+abb.ordem_simetrica()
+
+
+2.Pesquisar sobre outros tipos de árvore:
+
+Red–black tree (Árvore rubro-negra)
+
+Uma árvore rubro-negra é uma estrutura de dados que se enquadra no tipo de árvore de busca binária 
+-Cada nó tem uma cor, vermelha ou preta 
+-A raiz é sempre preta 
+-Cada nó folha é preto 
+-Se um nó é vermelho, então ambos os seus filhos são pretos 
+-Todo caminho simples de um nó para uma folha descendente tem o mesmo número de nós pretos 
+
+-Usada em estruturas que exigem busca rápida e balanceamento automático (como bancos de dados).
+-Rebalanceia-se automaticamente após inserções e remoções, seguindo regras de cor.
+
+B tree
+-Árvore balanceada com vários filhos por nó;
+-Ideal para sistemas de arquivos e bancos de dados, reduzindo acessos ao disco.
+-Cada nó tem vários valores e filhos, mantendo a árvore rasa e balanceada.
+
+B+ tree
+- Variação da árvore B, onde todos os dados ficam nas folhas.
+- Ótima para buscas sequenciais e consultas por intervalos.
+- Dados reais nas folhas, com nós internos organizando a navegação.
 
 
 
 
 
-# 2.Pesquisar sobre outros tipos de árvore:
-# -Red–black tree (Árvore rubro-negra)
-# -B tree, B+ tree
-# -Descrever o que é? Para que serve?  Como funciona cada uma das árvores?
