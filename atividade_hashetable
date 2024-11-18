@@ -1,0 +1,94 @@
+#a)
+
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.table = {i: [] for i in range(size)} 
+
+    def _hash(self, key):
+        return hash(key) % self.size
+
+    def insert(self, key, value):
+        index = self._hash(key)
+        self.table[index].append((key, value))
+
+    def get(self, key):
+        """Obtém o valor correspondente à chave."""
+        index = self._hash(key)
+        for k, v in self.table[index]:
+            if k == key:
+                return v
+        return None 
+
+    def __repr__(self):
+        return str(self.table)
+
+
+htable = HashTable(10)
+htable.insert("chave1", "valor1")
+htable.insert("chave2", "valor2")
+htable.insert("chave3", "valor3")
+print(htable)
+print("Valor de chave1:", htable.get("chave1"))
+
+
+#b)
+
+class Node:
+    """Representa um nó em uma lista encadeada."""
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.next = None  # Ponteiro para o próximo nó.
+
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.table = {i: None for i in range(size)}
+    def _hash(self, key):
+        return hash(key) % self.size
+
+    def insert(self, key, value):
+        index = self._hash(key)
+        new_node = Node(key, value)
+        if not self.table[index]:  
+            self.table[index] = new_node
+        else:  
+            current = self.table[index]
+            while current.next:
+                if current.key == key: 
+                    current.value = value
+                    return
+                current = current.next
+            if current.key == key:
+                current.value = value
+            else:
+                current.next = new_node
+
+    def get(self, key):
+        index = self._hash(key)
+        current = self.table[index]
+        while current:
+            if current.key == key:
+                return current.value
+            current = current.next
+        return None 
+
+    def __repr__(self):
+        result = {}
+        for i, node in self.table.items():
+            chain = []
+            while node:
+                chain.append((node.key, node.value))
+                node = node.next
+            result[i] = chain
+        return str(result)
+
+htable = HashTable(10)
+htable.insert("chave1", "valor1")
+htable.insert("chave2", "valor2")
+htable.insert("chave3", "valor3")
+htable.insert("chave1", "novo_valor1") 
+print(htable)
+print("Valor de chave1:", htable.get("chave1"))
+
