@@ -1,0 +1,56 @@
+class Arquivo:
+    def __init__(self, nome, caminho, tamanho):
+        self.nome = nome
+        self.caminho = caminho
+        self.tamanho = tamanho
+
+    def __repr__(self):
+        return f"Nome: {self.nome}, Caminho: {self.caminho}, Tamanho: {self.tamanho} KB"
+
+class TabelaHash:
+    def __init__(self, tamanho=10):
+        self.tamanho = tamanho
+        self.tabela = [[] for _ in range(tamanho)]
+
+    def _funcao_hash(self, chave):
+        return sum(ord(c) for c in chave) % self.tamanho
+
+    def adicionar(self, arquivo):
+        indice = self._funcao_hash(arquivo.nome)
+        self.tabela[indice].append(arquivo)
+
+    def buscar(self, nome):
+        indice = self._funcao_hash(nome)
+        for arquivo in self.tabela[indice]:
+            if arquivo.nome == nome:
+                return arquivo
+        return None
+
+    def remover(self, nome):
+        indice = self._funcao_hash(nome)
+        for i, arquivo in enumerate(self.tabela[indice]):
+            if arquivo.nome == nome:
+                del self.tabela[indice][i]
+                return True
+        return False
+
+    def listar(self):
+        arquivos = []
+        for lista in self.tabela:
+            arquivos.extend(lista)
+        return arquivos
+
+tabela = TabelaHash()
+tabela.adicionar(Arquivo("relatorio.pdf", "/documentos/relatorio.pdf", 1024))
+tabela.adicionar(Arquivo("foto.jpg", "/imagens/foto.jpg", 2048))
+tabela.adicionar(Arquivo("dados.csv", "/planilhas/dados.csv", 512))
+tabela.adicionar(Arquivo("backup.zip", "/backup/backup.zip", 4096))
+
+print("Busca por 'dados.csv':", tabela.buscar("dados.csv"))
+
+tabela.remover("foto.jpg")
+print("\nArquivo 'foto.jpg' removido.")
+
+print("\nArquivos restantes:")
+for arquivo in tabela.listar():
+    print(arquivo)
